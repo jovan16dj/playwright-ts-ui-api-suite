@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/jovan16dj/playwright-ts-ui-api-suite/branch/main/graph/badge.svg)](https://codecov.io/gh/jovan16dj/playwright-ts-ui-api-suite)
+
 # UI and API Automation Suite with Playwright
 
 This project contains automated functional UI and API tests for demo applications using Playwright and TypeScript.
