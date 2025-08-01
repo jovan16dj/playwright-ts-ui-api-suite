@@ -71,9 +71,8 @@ package.json
 2. Clone the repo:
 
 ```bash
-git clone https://github.com/jovan16dj/qa-task-for-lean-zurich.git
+git clone https://github.com/jovan16dj/playwright-ts-ui-api-suite.git
 ```
-then move the files into the root folder, and then delete qa-task-for-lean-zurich folder
 
 3. Install dependencies:
 
