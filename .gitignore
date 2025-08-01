@@ -53,3 +53,11 @@ temp/
 
 # TypeScript
 *.tsbuildinfo
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# dynamic test artifacts
+fixtures/employee.json

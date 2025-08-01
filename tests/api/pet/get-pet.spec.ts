@@ -5,7 +5,7 @@ test('Get pet by ID', async ({ request }) => {
   const newPet = await createPet(request, { name: 'Bella' });
 
   //API very flaky, so added the timeout. Still fails occasionally.
-  await new Promise((res) => setTimeout(res, 6000));
+  await new Promise((res) => setTimeout(res, 10000));
 
   const response = await getPet(request, newPet.id);
   expect(response.status()).toBe(200);
