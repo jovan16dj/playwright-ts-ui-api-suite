@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx playwright test",
     "test:ui": "npx playwright test tests/ui",
-    "test:api": "npx playwright test tests/api"
+    "test:api": "npx playwright test tests/api",
+    "coverage": "c8 --reporter=lcov --reporter=text npx playwright test"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.53.2",
-    "@types/node": "^24.0.10"
+    "@types/node": "^24.0.10",
+    "c8": "^10.1.3"
   }
 }
