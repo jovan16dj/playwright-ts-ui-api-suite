@@ -9,7 +9,7 @@ export class LoginPage {
   get username(): Locator { return this.page.getByPlaceholder('Username'); }
   get password(): Locator { return this.page.getByPlaceholder('Password'); }
   get submit(): Locator   { return this.page.getByRole('button', { name: /login/i }); }
-  get errorToast(): Locator { return this.page.getByText('/invalid credentials/i'); }
+  get errorToast(): Locator { return this.page.getByText(/invalid credentials/i); }
 
   async goto() {
     await this.page.goto(LoginPage.path);
