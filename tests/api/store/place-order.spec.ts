@@ -10,4 +10,5 @@ test('Place an order', async ({ request }) => {
   const order = await response.json();
   expect(order.id).toBe(orderData.id);
   expect(order.status).toBe('placed');
+  
 });

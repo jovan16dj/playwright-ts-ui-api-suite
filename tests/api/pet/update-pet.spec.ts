@@ -14,4 +14,5 @@ test('Update an existing pet', async ({ request }) => {
   expect(updated.status).toBe('sold');
 
   await deletePet(request, pet.id);
+  
 });

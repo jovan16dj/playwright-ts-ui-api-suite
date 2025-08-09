@@ -1,25 +1,25 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
+import { ROUTES } from '@config/routes';
 
 export class LoginPage {
-  readonly page: Page;
-  readonly usernameInput: Locator;
-  readonly passwordInput: Locator;
-  readonly loginButton: Locator;
+  static readonly path = ROUTES.login;
 
-  constructor(page: Page) {
-    this.page = page;
-    this.usernameInput = page.locator('input[name="username"]');
-    this.passwordInput = page.locator('input[name="password"]');
-    this.loginButton = page.locator('button[type="submit"]');
-  }
+  constructor(private readonly page: Page) {}
+
+  get username(): Locator { return this.page.getByPlaceholder('Username'); }
+  get password(): Locator { return this.page.getByPlaceholder('Password'); }
+  get submit(): Locator   { return this.page.getByRole('button', { name: /login/i }); }
+  get errorToast(): Locator { return this.page.getByText(/invalid credentials/i); }
 
   async goto() {
-    await this.page.goto('/web/index.php/auth/login');
+    await this.page.goto(LoginPage.path);
+    await this.username.waitFor(); 
   }
 
-  async login(username: string, password: string) {
-    await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+  async login(user: string, pass: string) {
+    await this.username.fill(user);
+    await this.password.fill(pass);
+    await this.submit.click();
+    
   }
 }

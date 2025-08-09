@@ -10,6 +10,7 @@ test('Find pets by status', async ({ request }) => {
   for (const pet of pets) {
     expect(pet.status).toBe('available');
   }
+
 });
 
 test('Find pets by invalid status returns empty or error', async ({ request }) => {
@@ -18,4 +19,5 @@ test('Find pets by invalid status returns empty or error', async ({ request }) =
 
   const pets = await response.json();
   expect(pets.length).toBe(0);
+  
 });

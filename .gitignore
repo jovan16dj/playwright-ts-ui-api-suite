@@ -60,4 +60,4 @@ temp/
 /playwright/.cache/
 
 # dynamic test artifacts
-fixtures/employee.json
+fixtures/runtime/*
