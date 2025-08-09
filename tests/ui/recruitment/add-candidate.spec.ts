@@ -1,29 +1,26 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../pages/LoginPage';
-import { RecruitmentPage } from '../../../pages/RecruitmentPage';
+import { faker } from '@faker-js/faker';
+import { LoginPage } from '@pages/LoginPage';
+import { RecruitmentPage } from '@pages/RecruitmentPage';
 
-  test('Admin can add a new job vacancy', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const recruitmentPage = new RecruitmentPage(page);
+test('Admin can add a candidate and find them by name', async ({ page }) => {
+  const login = new LoginPage(page);
+  const recruit = new RecruitmentPage(page);
 
-    await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+  await login.goto();
+  await login.login(process.env.USERNAME!, process.env.PASSWORD!);
 
-    await recruitmentPage.navigateToCandidates();
+  await recruit.navigateToCandidates();
 
-    //Would normally use dynamic data, but keeping it hardcoded here for readability
-    await recruitmentPage.addCandidate('Jerry', 'Cantrell','asd@abc.com');
+  const first = faker.person.firstName();
+  const uniqueFirst = `${first}${faker.number.int({ min: 100, max: 999 })}`;
+  const last = faker.person.lastName();
+  const email = faker.internet.email({ firstName: first, lastName: last });
 
-    await recruitmentPage.navigateToCandidates();
-    await recruitmentPage.candidateNameInput.fill('Jerry');
-    await page.waitForSelector('div[role="listbox"] >> div[role="option"]');
-    
-    //Long wait for slow results loading on the public demo website
-    await page.waitForTimeout(7000);
-    
-    await page.locator('div[role="listbox"] >> div[role="option"]').first().click();
-    await recruitmentPage.searchButton.click();
+  await recruit.addCandidate(uniqueFirst, last, email);
 
-    const resultRow = page.locator('.oxd-table-row:has-text("Jerry Cantrell")');
-    await expect(resultRow).toBeVisible();
+  await recruit.navigateToCandidates();
+  await recruit.filterCandidateByName(uniqueFirst);
+
+  await expect(recruit.rowContaining(first)).toBeVisible();
 });

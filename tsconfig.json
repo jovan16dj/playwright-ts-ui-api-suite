@@ -6,7 +6,18 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["node", "playwright"]
+    "types": ["node", "playwright"],
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@tests/*": ["tests/*"],
+      "@config/*": ["config/*"],
+      "@helpers/*": ["tests/helpers/*"],
+      "@fixtures/*": ["fixtures/*"],
+      "@utils/*": ["utils/*"]
+    },
+    "lib": ["ES2020", "DOM"],
+    "skipLibCheck": true
   },
-  "include": ["./tests", "./pages"]
+  "include": ["tests", "pages", "config", "fixtures"]
 }

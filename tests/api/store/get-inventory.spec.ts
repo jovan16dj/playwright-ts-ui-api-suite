@@ -7,4 +7,5 @@ test('Get store inventory', async ({ request }) => {
   const inventory = await response.json();
   expect(inventory).toBeTruthy();
   expect(inventory).toHaveProperty('available');
+
 });

@@ -1,24 +1,28 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../pages/LoginPage';
-import { PIMPage } from '../../../pages/PIMPage';
-import fs from 'fs';
-import path from 'path';
+import { faker } from '@faker-js/faker';
+import { LoginPage } from '@pages/LoginPage';
+import { PIMPage } from '@pages/PIMPage';
+import { saveJson } from '@utils/files';
+import path from 'node:path';
 
-  test('Admin can add a new employee', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const pimPage = new PIMPage(page);
+test('Admin can add a new employee', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  const pim = new PIMPage(page);
 
-    await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
+  const fullName = `${firstName} ${lastName}`;
 
-    await pimPage.navigateToAddEmployee();
+  await loginPage.goto();
+  await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
 
-    const { fullName, id } = await pimPage.addEmployee('John', 'Doe');
+  await pim.openAddEmployee();
+  const id = await pim.addEmployee(firstName, lastName);
 
-    // Wait for page to fully load
-    await page.waitForLoadState('networkidle');
+  await expect(pim.personalDetailsName).toHaveText(fullName);
 
-    // Save employee data to JSON file
-    const outputPath = path.join(__dirname, '../../../fixtures/employee.json');
-    fs.writeFileSync(outputPath, JSON.stringify({ fullName, id }, null, 2));
+  // Save data for the search test (gitignore: fixtures/runtime/*)
+  const outFile = path.resolve(process.cwd(), 'fixtures/runtime/employee.json');
+  await saveJson(outFile, { fullName, id });
+
 });

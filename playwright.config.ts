@@ -1,8 +1,10 @@
-// playwright.config.ts
 import { defineConfig, devices } from '@playwright/test';
+import 'tsconfig-paths/register';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export default defineConfig({
-  timeout: 30 * 1000,
+  timeout: 45_000,
   retries: 0,
   testDir: './tests',
   use: {

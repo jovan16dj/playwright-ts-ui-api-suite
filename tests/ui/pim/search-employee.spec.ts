@@ -1,24 +1,23 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../pages/LoginPage';
-import { PIMPage } from '../../../pages/PIMPage';
-import path from 'path';
-import fs from 'fs';
+import { LoginPage } from '@pages/LoginPage';
+import { PIMPage } from '@pages/PIMPage';
+import { loadJson } from '@utils/files';
+import path from 'node:path';
 
-// Load employee data from JSON
-const employeeDataPath = path.join(__dirname, '../../../fixtures/employee.json');
-const employee = JSON.parse(fs.readFileSync(employeeDataPath, 'utf-8'));
+test('Admin can search for an employee', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  const pim = new PIMPage(page);
 
-  test('Admin can search for an employee', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const pimPage = new PIMPage(page);
+  const employeePath = path.resolve(process.cwd(), 'fixtures/runtime/employee.json');
+  const { fullName, id } = await loadJson<{ fullName: string; id: string }>(employeePath);
 
-    await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+  await loginPage.goto();
+  await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
 
-    await pimPage.navigateToEmployeeList();
+  await pim.pimMenu.click();
 
-    await pimPage.searchEmployee(employee.fullName, employee.id);
-    await pimPage.assertFirstResultHasId(employee.id);
+  await pim.searchEmployee(fullName, id);
 
-    await expect(pimPage.resultRow.first()).toBeVisible();
+  await expect(pim.readFirstResultEmployeeId()).resolves.toContain(id);
+  
 });

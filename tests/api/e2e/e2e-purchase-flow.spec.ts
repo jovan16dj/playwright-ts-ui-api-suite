@@ -54,4 +54,5 @@ test('User creates account, logs in, finds a pet, places an order, deletes pet',
   // 7. Confirm deletion
   const getDeletedResp = await request.get(`/v2/pet/${dogPet.id}`);
   expect(getDeletedResp.status()).toBe(404);
+  
 });

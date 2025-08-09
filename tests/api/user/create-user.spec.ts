@@ -7,4 +7,5 @@ test('Create a new user', async ({ request }) => {
 
   const responseBody = await response.json();
   expect(responseBody.message).toBe(String(sampleUser.id));
+  
 });

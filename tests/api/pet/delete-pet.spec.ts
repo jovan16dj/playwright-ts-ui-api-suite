@@ -9,9 +9,11 @@ test('Delete an existing pet', async ({ request }) => {
 
   const getResponse = await getPet(request, pet.id);
   expect([200, 404]).toContain(getResponse.status());
+  
 });
 
 test('Delete non-existent pet returns 404 or similar', async ({ request }) => {
   const response = await deletePet(request, 123456789);
   expect([404, 400]).toContain(response.status());
+
 });
