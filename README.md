@@ -38,23 +38,58 @@ The goal was to demonstrate clean architecture, reusable code, and best practice
 ## Project Structure
 
 ```
-tests/
-├── ui/
-│   ├── authentication/
-│   ├── pim/
-│   ├── recruitment/
-│   └── e2e/
-└── api/
-    ├── pet/
-    ├── store/
-    └── user/
-helpers/
-pages/
-fixtures/
-utils/
-playwright.config.ts
-tsconfig.json
-package.json
+playwright-ts-ui-api-suite/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── fixtures/
+│   └── runtime/
+│       └── employee.json
+├── pages/
+│   ├── DashboardPage.ts
+│   ├── LoginPage.ts
+│   ├── PIMPage.ts
+│   └── RecruitmentPage.ts
+├── tests/
+│   ├── ui/
+│   │   ├── authentication/
+│   │   │   ├── login.spec.ts
+│   │   │   └── logout.spec.ts
+│   │   ├── pim/
+│   │   │   └── employee.serial.spec.ts
+│   │   ├── recruitment/
+│   │   │   ├── add-candidate.spec.ts
+│   │   │   └── add-vacancy.spec.ts
+│   │   └── e2e/
+│   │       └── e2e-recruitment-pim.spec.ts
+│   └── api/
+│       ├── e2e/
+│       │   └── e2e-recruitment-pim.spec.ts
+│       ├── helpers/
+│       │   └── e2e-purchase-flow.spec.ts
+│       ├── pet/
+│       │   ├── create-pet.spec.ts
+│       │   ├── delete-pet.spec.ts
+│       │   ├── find-by-status.spec.ts
+│       │   ├── get-pet.spec.ts
+│       │   └── update-pet.spec.ts
+│       ├── store/
+│       │   ├── get-inventory.spec.ts
+│       │   └── place-order.spec.ts
+│       └── user/
+│           ├── create-user.spec.ts
+│           └── login-user.spec.ts
+├── utils/
+│   └── files.ts
+├── config/
+│   └── routes.ts
+├── .env.example
+├── .gitignore
+├── README.md
+├── package.json
+├── package-lock.json
+├── playwright.config.ts
+└── tsconfig.json
 ...
 ```
 
