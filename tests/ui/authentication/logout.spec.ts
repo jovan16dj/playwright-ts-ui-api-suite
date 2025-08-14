@@ -8,7 +8,7 @@ import { DashboardPage } from '@pages/DashboardPage';
 
     await loginPage.goto();
     await loginPage.login(process.env.USERNAME!, process.env.PASSWORD! );
-    
+
     await dashboardPage.logout();
     await expect(loginPage.username).toBeVisible();
     

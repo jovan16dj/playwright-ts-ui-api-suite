@@ -6,13 +6,11 @@ export class DashboardPage {
 
   constructor(private readonly page: Page) {}
 
-  get userDropdown(): Locator { return this.page.locator('.oxd-userdropdown-tab') }
-  get userMenu(): Locator { return this.page.locator('.oxd-dropdown-menu')}
-  get logoutLink(): Locator { return this.userMenu.getByRole('menuitem', {name: /logout/i}); }
+  get userDropdown(): Locator { return this.page.getByRole('banner').getByRole('img', { name: 'profile picture' }) };
+  get logoutLink(): Locator { return this.page.getByRole('menuitem', {name: /logout/i}); }
 
   async logout() {
     await this.userDropdown.click(); 
-    await this.userMenu.waitFor();
     await this.logoutLink.click();  
   }
 }
