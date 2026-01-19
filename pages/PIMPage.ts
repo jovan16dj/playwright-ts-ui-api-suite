@@ -34,6 +34,10 @@ export class PIMPage {
     await this.employeeIdInput.fill(''); 
     await this.employeeIdInput.fill(id);
     await this.saveButton.click();
+
+    //add this wait to accomodate slow website transition 
+    await this.personalDetailsName.waitFor({ state: 'visible' });
+
     return id;
   }
 
