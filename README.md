@@ -2,7 +2,9 @@
 
 # UI and API Automation Suite with Playwright
 
-This project contains automated functional UI and API tests for demo applications using Playwright and TypeScript.
+This project contains automated functional UI and API tests for the OrangeHRM demo website, using Playwright and TypeScript.
+The user/pass can be obtained from the login page:
+https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
 
 ## Table of Contents
 
