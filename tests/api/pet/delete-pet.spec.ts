@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { createPet, deletePet, getPet } from '../helpers/petHelper';
+import { createPet, deletePet, getPet } from '@helpers/petHelper';
 
 test('Delete an existing pet', async ({ request }) => {
   const pet = await createPet(request, { name: 'Ghost' });

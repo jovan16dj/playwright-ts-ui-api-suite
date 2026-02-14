@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { sampleUser } from '../helpers/dataHelpers';
+import { sampleUser } from '@helpers/dataHelpers';
 
 test('Create a new user', async ({ request }) => {
   const response = await request.post('/v2/user', { data: sampleUser });

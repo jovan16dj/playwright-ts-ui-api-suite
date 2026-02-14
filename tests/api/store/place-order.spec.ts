@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { generateOrderData } from '../helpers/dataHelpers';
+import { generateOrderData } from '@helpers/dataHelpers';
 
 test('Place an order', async ({ request }) => {
   const orderData = generateOrderData();

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { sampleUser } from '../helpers/dataHelpers';
+import { sampleUser } from '@helpers/dataHelpers';
 
 test('Login user', async ({ request }) => {
   const response = await request.get(`/v2/user/login?username=${sampleUser.username}&password=${sampleUser.password}`);

@@ -12,7 +12,7 @@
       "@pages/*": ["pages/*"],
       "@tests/*": ["tests/*"],
       "@config/*": ["config/*"],
-      "@helpers/*": ["tests/helpers/*"],
+      "@helpers/*": ["tests/api/helpers/*"],
       "@fixtures/*": ["fixtures/*"],
       "@utils/*": ["utils/*"]
     },

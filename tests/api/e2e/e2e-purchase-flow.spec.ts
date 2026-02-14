@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { sampleUser, generateOrderData } from '../helpers/dataHelpers';
+import { sampleUser, generateOrderData } from '@helpers/dataHelpers';
 
 test('User creates account, logs in, finds a pet, places an order, deletes pet', async ({ request }) => {
   // Pre-requisite: create a pet named "Dog"

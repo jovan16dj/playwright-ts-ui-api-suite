@@ -1,4 +1,3 @@
-// tests/ui/pim/employee.serial.spec.ts
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { LoginPage } from '@pages/LoginPage';

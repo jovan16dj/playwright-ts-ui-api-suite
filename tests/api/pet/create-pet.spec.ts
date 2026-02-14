@@ -1,6 +1,5 @@
-
 import { test, expect } from '@playwright/test';
-import { createPet } from '../helpers/petHelper';
+import { createPet } from '@helpers/petHelper';
 
 test('Create a new pet', async ({ request }) => {
   const pet = await createPet(request, {
